@@ -532,6 +532,9 @@ nav a:hover{
 </head>
 
 <body>
+  <div style="background:#111;color:#fff;padding:6px;text-align:center;font-size:14px;">
+👀 Bu siteyi <b id="visitCount">0</b> kişi ziyaret etti
+</div>
 
   <header>
     <h1 id="siteTitle">GÜÇLÜ YAPI</h1>
@@ -1195,6 +1198,13 @@ function closeImageModal() {
   <span onclick="closeImageModal()" style="position:absolute;top:20px;right:30px;font-size:40px;color:white;cursor:pointer;">&times;</span>
   <img id="modalImage" src="" style="max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 0 20px rgba(0,0,0,0.4);">
 </div>
+  <script>
+fetch("https://api.countapi.xyz/hit/gucluyapi/ziyaret")
+.then(res => res.json())
+.then(data => {
+document.getElementById("visitCount").innerText = data.value;
+});
+</script>
 
 </body>
 </html>
