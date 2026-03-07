@@ -905,23 +905,13 @@ nav a:hover{
       }
     });
 
-    async function deleteReview(id){
-      if(!isAdmin) return;
-      if(confirm("Bu yorum silinsin mi?")){
-        await db.collection("reviews").doc(id).delete();
-        loadReviews();
-      }
-    }
-
-    function generateStars(r){
-      return "⭐".repeat(r || 0);
-    }
-
     async function submitReview(){
       const name = document.getElementById("name").value.trim();
       const comment = document.getElementById("comment").value.trim();
       const rating = parseInt(document.getElementById("rating").value);
       const message = document.getElementById("message");
+      const photoInput = document.getElementById("photo");
+      const photo = photoInput ? photoInput.files[0] : null;
 
       if(!name || !comment){
         if (message){
@@ -932,8 +922,22 @@ nav a:hover{
       }
 
       try{
+        let photoData = "";
+
+        if(photo){
+          photoData = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = e => resolve(e.target.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(photo);
+          });
+        }
+
         await db.collection("reviews").add({
-          name, comment, rating,
+          name,
+          comment,
+          rating,
+          photo: photoData,
           date: new Date().toLocaleDateString("tr-TR")
         });
 
@@ -942,9 +946,10 @@ nav a:hover{
           message.innerText = "Yorumunuz gönderildi!";
         }
 
-        document.getElementById("name").value="";
-        document.getElementById("comment").value="";
-        document.getElementById("rating").value="5";
+        document.getElementById("name").value = "";
+        document.getElementById("comment").value = "";
+        document.getElementById("rating").value = "5";
+        if (photoInput) photoInput.value = "";
 
         loadReviews();
       } catch(e){
@@ -978,6 +983,7 @@ nav a:hover{
           <h4>${data.name}</h4>
           <div class="stars">${generateStars(data.rating)}</div>
           <p>${data.comment}</p>
+        ${data.photo ? "<img src="${data.photo}" style="max-width:220px;width:100%;border-radius:10px;margin:10px 0;">` : ""}
           <small>📅 ${data.date || ""}</small>
           ${isAdmin ? `
             <button onclick="deleteReview('${doc.id}')"
