@@ -1198,13 +1198,18 @@ function closeImageModal() {
   <span onclick="closeImageModal()" style="position:absolute;top:20px;right:30px;font-size:40px;color:white;cursor:pointer;">&times;</span>
   <img id="modalImage" src="" style="max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 0 20px rgba(0,0,0,0.4);">
 </div>
-  <script>
-fetch("https://api.countapi.xyz/hit/gucluyapi/ziyaret")
-.then(res => res.json())
-.then(data => {
-document.getElementById("visitCount").innerText = data.value;
-});
+ <script>
+(async function () {
+  try {
+    const res = await fetch("https://api.countapi.xyz/hit/gucluyapimarket/ziyaret");
+    const data = await res.json();
+    document.getElementById("visitCount").innerText = data.value;
+  } catch (e) {
+    console.log("Sayaç hata:", e);
+  }
+})();
 </script>
+
 
 </body>
 </html>
