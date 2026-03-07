@@ -1013,6 +1013,23 @@ Yorumu Sil
     function generateStars(rating) {
   return "⭐".repeat(rating || 0);
 }
+    async function deleteReview(id) {
+  if (!isAdmin) {
+    alert("Admin değilsin!");
+    return;
+  }
+
+  const onay = confirm("Bu yorumu silmek istiyor musun?");
+  if (!onay) return;
+
+  try {
+    await db.collection("reviews").doc(id).delete();
+    loadReviews();
+  } catch (e) {
+    console.error(e);
+    alert("Yorum silinemedi!");
+  }
+}
 
     loadReviews();
   </script>
