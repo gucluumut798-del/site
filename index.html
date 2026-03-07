@@ -985,7 +985,7 @@ div.innerHTML = `
 <h4>${data.name}</h4>
 <div class="stars">${generateStars(data.rating)}</div>
 <p>${data.comment}</p>
-${data.photo ? `<img src="${data.photo}" style="max-width:220px;width:100%;border-radius:10px;margin:10px 0;">` : ""}
+${data.photo ? `<img src="${data.photo}" onclick="openImageModal('${data.photo}')" style="max-width:220px;width:100%;border-radius:10px;margin:10px 0;cursor:pointer;">` : ""}
 <small>📅 ${data.date || ""}</small>
 
 ${isAdmin ? `
@@ -1006,6 +1006,15 @@ Yorumu Sil
     }
     function generateStars(rating) {
   return "⭐".repeat(rating || 0);
+}
+    function openImageModal(src) {
+  document.getElementById("modalImage").src = src;
+  document.getElementById("imageModal").style.display = "flex";
+}
+
+function closeImageModal() {
+  document.getElementById("imageModal").style.display = "none";
+  document.getElementById("modalImage").src = "";
 }
  window.deleteReview = async function(id) {
   if (!isAdmin) {
@@ -1182,6 +1191,10 @@ Yorumu Sil
   });
 })();
 </script>
+ <div id="imageModal" style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.85);justify-content:center;align-items:center;padding:20px;box-sizing:border-box;">
+  <span onclick="closeImageModal()" style="position:absolute;top:20px;right:30px;font-size:40px;color:white;cursor:pointer;">&times;</span>
+  <img id="modalImage" src="" style="max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 0 20px rgba(0,0,0,0.4);">
+</div>
 
 </body>
 </html>
