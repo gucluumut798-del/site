@@ -1013,7 +1013,7 @@ Yorumu Sil
     function generateStars(rating) {
   return "⭐".repeat(rating || 0);
 }
-    async function deleteReview(id) {
+ window.deleteReview = async function(id) {
   if (!isAdmin) {
     alert("Admin değilsin!");
     return;
@@ -1029,7 +1029,7 @@ Yorumu Sil
     console.error(e);
     alert("Yorum silinemedi!");
   }
-}
+};
 
     loadReviews();
   </script>
