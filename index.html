@@ -913,6 +913,13 @@ nav a:hover{
       const message = document.getElementById("message");
       const photoInput = document.getElementById("photo");
       const photo = photoInput ? photoInput.files[0] : null;
+      if (photo && photo.size > 300 * 1024) {
+  if (message) {
+    message.style.color = "red";
+    message.innerText = "Fotoğraf çok büyük. 300 KB altı görsel seç.";
+  }
+  return;
+}
 
       if(!name || !comment){
         if (message){
