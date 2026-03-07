@@ -1198,18 +1198,24 @@ function closeImageModal() {
   <span onclick="closeImageModal()" style="position:absolute;top:20px;right:30px;font-size:40px;color:white;cursor:pointer;">&times;</span>
   <img id="modalImage" src="" style="max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 0 20px rgba(0,0,0,0.4);">
 </div>
- <script>
+<script>
 (async function () {
+  const el = document.getElementById("visitCount");
   try {
-    const res = await fetch("https://api.countapi.xyz/hit/gucluyapimarket/ziyaret");
+    const res = await fetch("https://api.countapi.xyz/hit/gucluyapimarket/ziyaret?nocache=" + Date.now());
     const data = await res.json();
-    document.getElementById("visitCount").innerText = data.value;
+    console.log("Sayaç cevap:", data);
+    if (el && data && typeof data.value !== "undefined") {
+      el.innerText = data.value;
+    } else {
+      el.innerText = "Hata";
+    }
   } catch (e) {
     console.log("Sayaç hata:", e);
+    if (el) el.innerText = "Hata";
   }
 })();
 </script>
-
 
 </body>
 </html>
