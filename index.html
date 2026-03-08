@@ -991,12 +991,7 @@ div.innerHTML = `
 ${data.photo ? `<img src="${data.photo}" onclick="openImageModal('${data.photo}')" style="max-width:220px;width:100%;border-radius:10px;margin:10px 0;cursor:pointer;">` : ""}
 <small>📅 ${data.date || ""}</small>
 
-${isAdmin ? `
-<button onclick="deleteReview(id)" style="display:none;">Yorumu Sil</button>
-style="margin-top:10px;background:red;color:white;border:none;padding:6px 12px;border-radius:8px;cursor:pointer;">
-Yorumu Sil
-</button>
-` : ""}
+${""}
 `;
         list.appendChild(div);
       });
@@ -1019,22 +1014,8 @@ function closeImageModal() {
   document.getElementById("imageModal").style.display = "none";
   document.getElementById("modalImage").src = "";
 }
- window.deleteReview = async function(id) {
-  if (!isAdmin) {
-    alert("Admin değilsin!");
-    return;
-  }
-
-  const onay = confirm("Bu yorumu silmek istiyor musun?");
-  if (!onay) return;
-
-  try {
-    await db.collection("reviews").doc(id).delete();
-    loadReviews();
-  } catch (e) {
-    console.error(e);
-    alert("Yorum silinemedi!");
-  }
+ window.deleteReview = function(id) {
+  return;
 };
 
     loadReviews();
