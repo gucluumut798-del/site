@@ -992,7 +992,7 @@ ${data.photo ? `<img src="${data.photo}" onclick="openImageModal('${data.photo}'
 <small>📅 ${data.date || ""}</small>
 
 ${isAdmin ? `
-<button onclick="deleteReview('${doc.id}')"
+<button onclick="deleteReview(id)" style="display:none;">Yorumu Sil</button>
 style="margin-top:10px;background:red;color:white;border:none;padding:6px 12px;border-radius:8px;cursor:pointer;">
 Yorumu Sil
 </button>
@@ -1199,22 +1199,16 @@ function closeImageModal() {
   <img id="modalImage" src="" style="max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 0 20px rgba(0,0,0,0.4);">
 </div>
 <script>
-(async function () {
-  const el = document.getElementById("visitCount");
-  try {
-    const res = await fetch("https://api.countapi.xyz/hit/gucluyapimarket/ziyaret?nocache=" + Date.now());
-    const data = await res.json();
-    console.log("Sayaç cevap:", data);
-    if (el && data && typeof data.value !== "undefined") {
-      el.innerText = data.value;
-    } else {
-      el.innerText = "Hata";
-    }
-  } catch (e) {
-    console.log("Sayaç hata:", e);
-    if (el) el.innerText = "Hata";
-  }
-})();
+<script>
+fetch("https://api.countapi.xyz/hit/gucluyapimarket/ziyaret")
+.then(res => res.json())
+.then(data => {
+document.getElementById("visitCount").innerText = data.value;
+})
+.catch(() => {
+document.getElementById("visitCount").innerText = "0";
+});
+</script>
 </script>
 
 </body>
