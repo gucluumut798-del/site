@@ -974,26 +974,31 @@ nav a:hover{
       let total = 0;
       let count = 0;
 
-      snap.forEach(doc=>{
-        const data = doc.data();
-        if (typeof data.rating === "number"){
-          total += data.rating;
-          count++;
-        }
+     snap.forEach(doc => {
+  const data = doc.data();
+  const reviewId = doc.id;
 
-       const div = document.createElement("div");
-div.className = "review-card";
+  if (typeof data.rating === "number") {
+    total += data.rating;
+    count++;
+  }
 
-div.innerHTML = `
-<h4>${data.name}</h4>
-<div class="stars">${generateStars(data.rating)}</div>
-<p>${data.comment}</p>
-${data.photo ? `<img src="${data.photo}" onclick="openImageModal('${data.photo}')" style="max-width:220px;width:100%;border-radius:10px;margin:10px 0;cursor:pointer;">` : ""}
-<small>📅 ${data.date || ""}</small>
-${isAdmin ? `<button onclick="deleteReview(id)" style="margin-top:10px;background:red;color:white;border:none;padding:6px 12px;border-radius:8px;cursor:pointer;">Yorumu Sil</button>` : ""}
-`;
-        list.appendChild(div);
-      });
+  const div = document.createElement("div");
+  div.className = "review-card";
+
+  div.innerHTML = `
+    <h4>${data.name}</h4>
+    <div class="stars">${generateStars(data.rating)}</div>
+    <p>${data.comment}</p>
+    ${data.photo ? `<img src="${data.photo}" onclick="openImageModal('${data.photo}')" style="max-width:220px;width:100%;border-radius:10px;margin:10px 0;cursor:pointer;">` : ""}
+    <small>📅 ${data.date || ""}</small>
+    ${isAdmin ? `<button onclick="deleteReview('${reviewId}')" style="margin-top:10px;background:red;color:white;border:none;padding:6px 12px;border-radius:8px;cursor:pointer;">Yorumu Sil</button>` : ""}
+  `;
+
+  list.appendChild(div);
+});
+
+
 
       const avg = count ? (total / count) : 0;
       const rs = document.getElementById("ratingSummary");
