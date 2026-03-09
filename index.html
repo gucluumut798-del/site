@@ -1207,7 +1207,42 @@ document.getElementById("visitCount").innerText = data.value;
 .catch(() => {
 document.getElementById("visitCount").innerText = "0";
 });
-</script>
+<script>
+let yorumlar = JSON.parse(localStorage.getItem("yorumlar")) || [];
+
+function yorumlariGoster(){
+  const alan = document.getElementById("yorumListesi");
+  if(!alan) return;
+
+  alan.innerHTML = "";
+
+  yorumlar.forEach((y,index)=>{
+    alan.innerHTML += `
+      <div style="border:1px solid #ddd;padding:10px;margin:10px 0;border-radius:10px;">
+        <b>${y.ad}</b><br>
+        ${y.yorum}
+
+        <div style="margin-top:8px;color:#444;">
+          <b>GÜÇLÜ YAPI:</b> ${y.cevap || ""}
+        </div>
+
+        ${localStorage.getItem("isAdmin") ? `
+        <textarea id="cevap${index}" placeholder="Yanıt yaz"></textarea>
+        <button onclick="cevapla(${index})">Yanıtla</button>
+        ` : ""}
+      </div>
+    `;
+  });
+}
+
+function cevapla(i){
+  const txt = document.getElementById("cevap"+i).value;
+  yorumlar[i].cevap = txt;
+  localStorage.setItem("yorumlar", JSON.stringify(yorumlar));
+  yorumlariGoster();
+}
+
+yorumlariGoster();
 </script>
 
 </body>
