@@ -981,7 +981,7 @@ nav a:hover{
     count++;
   }
 
-  const div = document.createElement("div");
+const div = document.createElement("div");
   div.className = "review-card";
 
  div.innerHTML = `
@@ -1008,8 +1008,7 @@ nav a:hover{
 
   list.appendChild(div);
 });
-      list.appendChild(div);
-});
+    
 
 async function replyReview(reviewId) {
   const textarea = document.getElementById(`reply-${reviewId}`);
