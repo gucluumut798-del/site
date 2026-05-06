@@ -138,60 +138,76 @@ gtag('config', 'AW-17964334460');
       line-height: 25px;
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-      margin-top: 30px;
-    }
+    #projeler{
+  padding:80px 20px;
+  background:linear-gradient(180deg,#f8fafc,#eef2f7);
+}
 
-    .gallery img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 15px;
-      transition: 0.3s;
-    }
+.referans-baslik{
+  text-align:center;
+  margin-bottom:35px;
+}
 
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
+.referans-baslik h2{
+  font-size:38px;
+  font-weight:800;
+  color:#111;
+  margin-bottom:10px;
+}
 
-    .contact {
-      text-align: center;
-      font-size: 18px;
-      line-height: 35px;
-    }
+.referans-baslik p{
+  color:#555;
+  font-size:17px;
+  max-width:700px;
+  margin:auto;
+}
 
-    .btn {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 15px 30px;
-      background: #25d366;
-      color: white;
-      text-decoration: none;
-      border-radius: 15px;
-      font-weight: bold;
-      font-size: 17px;
-    }
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+  margin-bottom:40px;
+}
 
-    .btn:hover {
-      background: #1ebd5a;
-    }
+.stat-box{
+  background:#fff;
+  padding:18px;
+  border-radius:18px;
+  text-align:center;
+  font-weight:700;
+  box-shadow:0 5px 20px rgba(0,0,0,0.07);
+}
 
-    footer {
-      margin-top: 30px;
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
+.video-box{
+  margin-bottom:35px;
+}
 
-    footer p {
-      margin: 0;
-      opacity: 0.85;
-      font-size: 15px;
-    }
+.video-box video{
+  width:100%;
+  border-radius:24px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
+}
+
+.gallery img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  border-radius:22px;
+  transition:0.4s;
+  cursor:pointer;
+  box-shadow:0 8px 25px rgba(0,0,0,0.12);
+}
+
+.gallery img:hover{
+  transform:scale(1.05);
+  box-shadow:0 12px 35px rgba(0,0,0,0.22);
+}
 
     /* YORUM SİSTEMİ */
     .review-form {
@@ -636,33 +652,53 @@ nav a:hover{
   
 
 
-  <section id="projeler" class="section-reveal">
-    <h2>Projelerimiz / Referanslarımız</h2>
-   
-    
-<div class="gallery">
-  <img src="1.jpg" alt="Proje 1">
-  <img src="2.jpg" alt="Proje 2">
-  <img src="3.jpg" alt="Proje 3">
-  <img src="4.jpg" alt="Proje 4">
-  <img src="5.jpg" alt="Proje 5">
-  <img src="6.jpg" alt="Proje 6">
-  <img src="7.jpg" alt="Proje 7">
-  <img src="8.jpg" alt="Proje 8">
-  <img src="9.jpg" alt="Proje 9">
-  <img src="10.jpg" alt="Proje 10">
-  <img src="11.jpg" alt="Proje 11">
-  <img src="12.jpg" alt="Proje 12">
-  <img src="13.jpg" alt="Proje 13">
-  <img src="14.jpg" alt="Proje 14">
-  <img src="15.jpg" alt="Proje 15">
-  <img src="16.jpg" alt="Proje 16">
-  <img src="17.jpg" alt="Proje 17">
-  <img src="18.jpg" alt="Proje 18">
+ <section id="projeler" class="section-reveal">
 
-  <video width="100%" controls style="border-radius:14px; display:block;">
-  <source src="video.mp4" type="video/mp4">
-</video>
+  <div class="referans-baslik">
+    <h2>İzmir’de Tamamladığımız Projeler</h2>
+    <p>
+      Dış cephe boya, mantolama, izolasyon ve tadilat alanlarında
+      tamamladığımız bazı çalışmalarımız.
+    </p>
+  </div>
+
+  <div class="stats">
+    <div class="stat-box">🏢 250+ Proje</div>
+    <div class="stat-box">🎨 DYO & Jotun Bayisi</div>
+    <div class="stat-box">🛠 42 Yıllık Ustalık</div>
+    <div class="stat-box">⭐ Profesyonel Ekip</div>
+  </div>
+
+  <div class="video-box">
+    <video controls>
+      <source src="video.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="gallery">
+
+    <img src="1.jpg" alt="">
+    <img src="2.jpg" alt="">
+    <img src="3.jpg" alt="">
+    <img src="4.jpg" alt="">
+    <img src="5.jpg" alt="">
+    <img src="6.jpg" alt="">
+    <img src="7.jpg" alt="">
+    <img src="8.jpg" alt="">
+    <img src="9.jpg" alt="">
+    <img src="10.jpg" alt="">
+    <img src="11.jpg" alt="">
+    <img src="12.jpg" alt="">
+    <img src="13.jpg" alt="">
+    <img src="14.jpg" alt="">
+    <img src="15.jpg" alt="">
+    <img src="16.jpg" alt="">
+    <img src="17.jpg" alt="">
+    <img src="18.jpg" alt="">
+
+  </div>
+
+</section>
  
 
 </div>
