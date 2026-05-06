@@ -935,7 +935,23 @@ nav a:hover{
   <footer>
     <p>© 2026 GÜÇLÜ YAPI - Tüm Hakları Saklıdır.</p>
   </footer>
+  <style>
+  #buyukResim{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999999;
+}
 
+#buyukResim img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:20px;
+}
+<style>
 
 
   <!-- Teklif Gönderme Scripti (Firebase'den bağımsız) -->
@@ -1408,38 +1424,22 @@ const firebaseConfig = {
   appId: "1:33090753604:web:a0a1fb8b0f98ea24561811"
 };
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-</script>
-  <div id="lightbox">
-  <span id="closeBtn">&times;</span>
-  <img id="lightboxImg">
+<div id="buyukResim" onclick="this.style.display='none'">
+  <img id="buyukResimImg">
 </div>
 
 <script>
+document.querySelectorAll('.gallery img').forEach(function(img){
 
-const galleryImages = document.querySelectorAll('.gallery img');
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightboxImg');
-const closeBtn = document.getElementById('closeBtn');
+  img.onclick = function(){
 
-galleryImages.forEach(img => {
-  img.addEventListener('click', () => {
-    lightbox.style.display = 'flex';
-    lightboxImg.src = img.src;
-  });
-});
+    document.getElementById('buyukResim').style.display = 'flex';
 
-closeBtn.addEventListener('click', () => {
-  lightbox.style.display = 'none';
-});
+    document.getElementById('buyukResimImg').src = this.src;
 
-lightbox.addEventListener('click', (e) => {
-  if(e.target !== lightboxImg){
-    lightbox.style.display = 'none';
   }
-});
 
+});
 </script>
 </body>
 </html>
